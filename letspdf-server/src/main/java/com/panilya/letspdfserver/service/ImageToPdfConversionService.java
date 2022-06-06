@@ -9,9 +9,11 @@ import com.itextpdf.layout.element.Image;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class ImageToPdfConversionService {
 
-    public void convert(MultipartFile[] files) throws IOException {
+    public byte[] convert(MultipartFile[] files) throws IOException {
 
         List<ImageData> imagesData = Arrays.stream(files)
                 .map(file -> {
@@ -34,7 +36,6 @@ public class ImageToPdfConversionService {
 //        PdfDocument pdfDocument = new PdfDocument(new PdfWriter("ImageToPdf.pdf"));
         FileOutputStream fileOutputStream = new FileOutputStream("letspdf-server/src/main/resources/documents/file.pdf");
         PdfDocument pdfDocument = new PdfDocument(new PdfWriter(fileOutputStream));
-
         Document document = new Document(pdfDocument);
 
         for (ImageData image : imagesData) {
@@ -44,6 +45,11 @@ public class ImageToPdfConversionService {
             document.add(img);
             pdfDocument.addNewPage();
         }
+
         pdfDocument.close();
+        Path pathToPdfFile = Paths.get("letspdf-server/src/main/resources/documents/file.pdf");
+        byte[] pdfFileInBytes = Files.readAllBytes(pathToPdfFile);
+        Files.delete(pathToPdfFile);
+        return pdfFileInBytes;
     }
 }
