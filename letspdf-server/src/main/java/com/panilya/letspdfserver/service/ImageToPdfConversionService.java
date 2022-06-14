@@ -34,7 +34,7 @@ public class ImageToPdfConversionService {
                 .collect(Collectors.toList());
 
 //        PdfDocument pdfDocument = new PdfDocument(new PdfWriter("ImageToPdf.pdf"));
-        FileOutputStream fileOutputStream = new FileOutputStream("letspdf-server/src/main/resources/documents/file.pdf");
+        FileOutputStream fileOutputStream = new FileOutputStream("letspdf-server/src/main/resources/file.pdf");
         PdfDocument pdfDocument = new PdfDocument(new PdfWriter(fileOutputStream));
         Document document = new Document(pdfDocument);
 
@@ -47,7 +47,7 @@ public class ImageToPdfConversionService {
         }
 
         pdfDocument.close();
-        Path pathToPdfFile = Paths.get("letspdf-server/src/main/resources/documents/file.pdf");
+        Path pathToPdfFile = Paths.get("letspdf-server/src/main/resources/file.pdf");
         byte[] pdfFileInBytes = Files.readAllBytes(pathToPdfFile);
         Files.delete(pathToPdfFile);
         return pdfFileInBytes;
