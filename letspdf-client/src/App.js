@@ -1,7 +1,8 @@
-import logo from './logo.svg';
+
 import React from "react";
 import './App.css';
 import axios from "axios";
+import {useDropzone} from 'react-dropzone'
 
 class App extends React.Component {
   state = {
@@ -40,8 +41,13 @@ class App extends React.Component {
   }
   render() {
     return (
-        <div>
-          <h1>Select your files</h1>
+        <div className="body">
+          <div className="title_wrapper">
+            <h1 className="title">Let's PDF!</h1>
+            <h4 className="subTitle">
+              Easy <span className="spanRed">.img</span> to <span className="spanGreen">.pdf</span> converter
+            </h4>
+          </div>
           <input
               type="file"
               multiple="multiple"
