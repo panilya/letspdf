@@ -1,38 +1,44 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
+
+.body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.title_wrapper{
+  margin-top: 0px;
+  padding: 10px 10px 10px 10px ;
+  box-shadow: 0px 0px 1px 0px black;
+}
+.title{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 60px;
+  font-family: 'Permanent Marker', cursive;
   text-align: center;
+
+  background: rgb(200,196,102);
+  background: linear-gradient(90deg, rgba(232,255,0,1) 0%, rgba(255,0,0,1) 23%, rgba(255,235,0,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.subTitle{
+  color: rgba(0, 0, 0, 0.61);
+  font-size: 18px;
+  margin-top: 8px;
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.spanRed{
+  color: red;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.spanGreen{
+  color:green
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
