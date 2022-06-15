@@ -1,24 +1,15 @@
 
-import React from "react";
+import React,{useState} from "react";
 import './App.css';
 import axios from "axios";
+import {MyDropzone} from "./components/DropZone";
 import {useDropzone} from 'react-dropzone'
 
-class App extends React.Component {
-  state = {
-    files: null,
-  };
-
-  handleFile(e) {
-    let files = e.target.files;
-    this.setState({ files });
-  }
-
-  handleUpload(e) {
-      let files = this.state.files;
-
+const App = () => {
+  const [files, setFiles] = useState([])
+  
+  const handleUpload = (e) =>{
       let formData = new FormData();
-
       for (let i = 0; i < files.length; i++) {
           formData.append("files", files[i])
       }
@@ -39,7 +30,6 @@ class App extends React.Component {
           console.log(err.status)
       })
   }
-  render() {
     return (
         <div className="body">
           <div className="title_wrapper">
@@ -48,16 +38,13 @@ class App extends React.Component {
               Easy <span className="spanRed">.img</span> to <span className="spanGreen">.pdf</span> converter
             </h4>
           </div>
-          <input
-              type="file"
-              multiple="multiple"
-              onChange={(e) => this.handleFile(e)}
-          />
-          <button onClick={(e) => this.handleUpload(e)}
-          >Send Files</button>
+          <div>
+          <MyDropzone setFiles={setFiles} files={files}/>
+          </div>
+          <button disabled={files.length? false : true} onClick={(e) => handleUpload(e)}>
+          Convert!</button>
         </div>
     );
-  }
 }
 
 export default App;
