@@ -1,27 +1,27 @@
 import React, {useCallback} from 'react'
 import { useDropzone } from "react-dropzone";
 
-import "./DropZone.css";
+import "./Dropzone.css";
 
 
-export const MyDropzone = ({setFiles , files}) => {
+export const Dropzone = ({setFiles, files}) => {
 
   const onDrop = useCallback(acceptedFiles => {
-    setFiles((prev) => [...prev,...acceptedFiles])
+    setFiles((prev) => [...prev, ...acceptedFiles])
     console.log(acceptedFiles)
     console.log(typeof(files))
   }, [])
 
-  const {acceptedFiles,getRootProps, getInputProps, isDragActive} = useDropzone({onDrop
+  const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop
   })
 
-  const onDelete = (ID) => {
-    const newList = files.filter((item,index) => index !== ID);
+  const onDelete = (id) => {
+    const newList = files.filter((item, index) => index !== id);
 
     setFiles(newList);
   }
 
-  const fileList = files.map((file,id) => (
+  const fileList = files.map((file, id) => (
     <li key={id} className='li' >
       <div className='trash_button'>
          <i onClick={() => onDelete(id)} className="gg-trash"></i> 

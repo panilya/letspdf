@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
-
 @import url('https://css.gg/trash.css');
-
 
 body {
     text-align: center;
 }
+
 .dropzone-div {
     text-align: center;
 
@@ -71,6 +70,7 @@ body {
     display: flex;
     justify-content: left;
 }
+
 .trash_button{
     padding: 1em;
     transition: 0.2s;
