@@ -23,13 +23,19 @@ public class ConvertController {
     }
 
     @PostMapping(path = "/upload",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> uploadFiles(@RequestParam("files") MultipartFile[] files) throws IOException {
-        byte[] pdfFile = imageToPdfConversionService.convert(files);
+        if (files.length == 0) {
+            throw new IllegalStateException("There are no files");
+        }
 
+        byte[] pdfFile = imageToPdfConversionService.convert(files);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Content-Disposition");
-        httpHeaders.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "file.pdf" + "\"");
+        httpHeaders.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + files[0].getOriginalFilename() + "\"");
+        //TODO: Find better way to handle this case
+        httpHeaders.add("Attachment-Filename", files[0].getOriginalFilename());
 
         return ResponseEntity.ok().contentType(MediaType.valueOf(MediaType.APPLICATION_PDF_VALUE))
                 .headers(httpHeaders)
