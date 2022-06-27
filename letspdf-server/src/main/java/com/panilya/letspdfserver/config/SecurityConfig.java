@@ -21,7 +21,7 @@ public class SecurityConfig {
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipart = new CommonsMultipartResolver();
-        multipart.setMaxUploadSize(3 * 1024 * 1024);
+        multipart.setMaxUploadSize(5 * 1024 * 1024); // 5 MB
         return multipart;
     }
 
